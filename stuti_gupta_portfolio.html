@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stuti Gupta | Full-Stack &amp; AI Systems Engineer</title>
+  <meta name="description" content="Portfolio of Stuti Gupta — Computer Science Undergraduate (CSE '27), Forward Deployed Engineer Intern at TechLadder.ai, building accessible, responsive, and performant web & AI applications." />
+  
+  <!-- Google Fonts: Alfa Slab One (Collegiate Block Display), Plus Jakarta Sans & Space Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Tailwind Configuration matching GrowthX Off Campus Screenshot -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            royalBlue: '#1548D3',
+            royalBlueDark: '#0F36A3',
+            cream: '#FDF6D8',
+            creamLight: '#FFFBEB',
+            inkBlack: '#0B0E17',
+            marigold: '#F9D435',
+            marigoldHover: '#FFE052',
+            neonGreen: '#4ADE4A',
+            bubblePink: '#F472B6',
+            acidLime: '#E5F542',
+            deepPurple: '#4C1D95',
+          },
+          fontFamily: {
+            collegiate: ['"Alfa Slab One"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"Space Mono"', 'monospace'],
+          },
+          boxShadow: {
+            brutal: '4px 4px 0px #0B0E17',
+            brutalLg: '6px 6px 0px #0B0E17',
+            brutalPill: '0px 4px 0px #0B0E17',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #FDF6D8;
+      color: #0B0E17;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Collegiate Block Lettering matching "OFF CAMPUS" in image_7d8bb9.png */
+    .collegiate-title {
+      font-family: 'Alfa Slab One', serif;
+      color: #FDF6D8;
+      letter-spacing: 0.04em;
+      line-height: 0.94;
+      -webkit-text-stroke: 2.5px #0B0E17;
+      text-shadow:
+        3px 3px 0px #0B0E17,
+        5px 5px 0px #0B0E17;
+    }
+
+    @media (min-width: 768px) {
+      .collegiate-title {
+        -webkit-text-stroke: 3.5px #0B0E17;
+        text-shadow:
+          4px 4px 0px #0B0E17,
+          7px 7px 0px #0B0E17;
+      }
+    }
+
+    /* Neo-brutalist button press physics */
+    .brutal-btn {
+      border: 2px solid #0B0E17;
+      box-shadow: 0px 4px 0px #0B0E17;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+    }
+    .brutal-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0px 6px 0px #0B0E17;
+    }
+    .brutal-btn:active {
+      transform: translateY(2px);
+      box-shadow: 0px 1px 0px #0B0E17;
+    }
+
+    /* Neo-brutalist card lift */
+    .brutal-card {
+      border: 2.5px solid #0B0E17;
+      box-shadow: 5px 5px 0px #0B0E17;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .brutal-card:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 7px 7px 0px #0B0E17;
+    }
+
+    /* Floating Sticker Animations */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(var(--rot, 0deg)); }
+      50% { transform: translateY(-7px) rotate(calc(var(--rot, 0deg) + 3deg)); }
+    }
+    .sticker-float {
+      animation: floatSlow 4.5s ease-in-out infinite;
+    }
+    .sticker-float-delayed {
+      animation: floatSlow 5.2s ease-in-out 1.4s infinite;
+    }
+
+    /* Continuous Diagonal Acid-Lime Ticker Tape */
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marqueeScroll 28s linear infinite;
+    }
+    .marquee-track:hover {
+      animation-play-state: paused;
+    }
+
+    /* Subtle scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Animated Photo Carousel Slide & Crossfade Transitions */
+    .photo-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transform: scale(1.05) translateY(6px);
+      transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+    .photo-slide.active {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+      pointer-events: auto;
+      z-index: 2;
+    }
+    .photo-slide.prev {
+      opacity: 0;
+      transform: scale(0.96) translateY(-6px);
+      z-index: 1;
+    }
+
+    @keyframes storyFill {
+      from { width: 0%; }
+      to { width: 100%; }
+    }
+    .story-bar-fill {
+      animation: storyFill 3s linear forwards;
+    }
+  </style>
+</head>
+<body class="bg-cream text-inkBlack selection:bg-marigold selection:text-inkBlack">
+
+  <!-- Toast Notification (Zero alert() calls) -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 pointer-events-none opacity-0 translate-y-3 transition-all duration-300">
+    <div class="bg-marigold border-2 border-inkBlack shadow-brutal text-inkBlack px-4 py-3 rounded-xl flex items-center gap-2.5 text-sm font-bold">
+      <span class="w-2.5 h-2.5 rounded-full bg-neonGreen border border-inkBlack"></span>
+      <span id="toast-message">Copied to clipboard!</span>
+    </div>
+  </div>
+
+  <!-- CLEAN INTEGRATED NAVIGATION BAR (Preserves exact centered Hero lockup below) -->
+  <header class="sticky top-0 z-40 bg-royalBlue/95 backdrop-blur-md border-b-2 border-inkBlack/30">
+    <div class="max-w-6xl mx-auto px-4 sm:px-8 h-14 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2 text-white font-extrabold text-sm sm:text-base tracking-tight">
+        <span class="w-2.5 h-2.5 rounded-full bg-marigold border border-inkBlack"></span>
+        <span>SG // PORTFOLIO</span>
+      </a>
+
+      <!-- Centered Desktop Nav Pill -->
+      <nav class="hidden md:flex items-center gap-6 bg-royalBlueDark/80 border-2 border-inkBlack px-5 py-1.5 rounded-full text-xs font-bold text-white shadow-[0_2px_0_#0B0E17]">
+        <a href="#about" class="hover:text-marigold transition-colors">About</a>
+        <a href="#experience" class="hover:text-marigold transition-colors">Experience</a>
+        <a href="#work" class="hover:text-marigold transition-colors">Projects</a>
+        <a href="#stack" class="hover:text-marigold transition-colors">Skills</a>
+        <a href="#achievements" class="hover:text-marigold transition-colors">Achievements</a>
+      </nav>
+
+      <!-- Quick Action -->
+      <div class="flex items-center gap-2.5">
+        <button onclick="openContactModal()" class="brutal-btn bg-marigold hover:bg-marigoldHover text-inkBlack font-extrabold text-xs px-4 py-1.5 rounded-full cursor-pointer">
+          Connect
+        </button>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" aria-label="Toggle Menu" class="md:hidden p-1.5 rounded-lg bg-cream border-2 border-inkBlack text-inkBlack">
+          <svg id="menu-icon-open" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 7h16M4 17h16" />
+          </svg>
+          <svg id="menu-icon-close" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden border-t-2 border-inkBlack bg-royalBlue px-5 py-4 space-y-2.5">
+      <a href="#about" class="mobile-nav-link block py-1.5 text-sm font-extrabold text-white hover:text-marigold">About &amp; Photos</a>
+      <a href="#experience" class="mobile-nav-link block py-1.5 text-sm font-extrabold text-white hover:text-marigold">Experience (TechLadder.ai)</a>
+      <a href="#work" class="mobile-nav-link block py-1.5 text-sm font-extrabold text-white hover:text-marigold">Featured Projects</a>
+      <a href="#stack" class="mobile-nav-link block py-1.5 text-sm font-extrabold text-white hover:text-marigold">Technical Skills</a>
+      <a href="#achievements" class="mobile-nav-link block py-1.5 text-sm font-extrabold text-white hover:text-marigold">Achievements &amp; Open Source</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===================================================================== -->
+    <!-- HERO HOME PAGE: EXACT CENTERED GROWTHX OFF CAMPUS SYMMETRY & STICKERS -->
+    <!-- ===================================================================== -->
+    <section class="relative bg-royalBlue text-white min-h-[calc(100vh-3.5rem)] flex flex-col items-center justify-center pt-8 pb-28 sm:pt-12 sm:pb-32 px-4 sm:px-6 overflow-hidden">
+
+      <!-- 1. TOP-LEFT: Pink/Lavender 3D Lightning Bolt Sticker with Dark Navy Shadow -->
+      <svg style="--rot: -10deg;" class="sticker-float absolute top-6 left-4 sm:top-10 sm:left-12 lg:left-20 w-16 h-16 sm:w-24 sm:h-24 lg:w-28 lg:h-28 pointer-events-none z-10" viewBox="0 0 110 110" fill="none">
+        <path d="M66 12L22 58H52L40 98L88 48H56L66 12Z" fill="#0B0E17" transform="translate(-6, 6)"/>
+        <path d="M66 12L22 58H52L40 98L88 48H56L66 12Z" fill="#F472B6" stroke="#0B0E17" stroke-width="3.5" stroke-linejoin="round"/>
+      </svg>
+
+      <!-- 2. SCATTERED FOUR-POINT WHITE SPARKLES across the Royal Blue Sky -->
+      <svg class="absolute top-24 right-10 sm:top-28 sm:right-28 lg:right-40 w-4 h-4 sm:w-5 sm:h-5 text-white pointer-events-none" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z"/>
+      </svg>
+      <svg class="absolute top-1/2 left-8 sm:left-24 lg:left-36 w-3.5 h-3.5 sm:w-4 sm:h-4 text-white pointer-events-none" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z"/>
+      </svg>
+      <svg class="hidden sm:block absolute bottom-40 right-16 lg:right-28 w-4 h-4 text-white pointer-events-none" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z"/>
+      </svg>
+
+      <!-- 3. RIGHT SIDE: Neon Lime-Green Pixel Space-Invader Sprite Sticker -->
+      <svg style="--rot: 16deg;" class="sticker-float-delayed absolute bottom-44 right-4 sm:bottom-48 sm:right-14 lg:right-32 w-12 h-12 sm:w-16 sm:h-16 pointer-events-none z-10" viewBox="0 0 64 64" fill="none">
+        <path d="M20 12H26V18H38V12H44V18H50V30H56V42H50V36H44V46H38V40H26V46H20V36H14V42H8V30H14V18H20V12Z" fill="#0B0E17" transform="translate(3, 4)"/>
+        <path d="M20 12H26V18H38V12H44V18H50V30H56V42H50V36H44V46H38V40H26V46H20V36H14V42H8V30H14V18H20V12Z" fill="#4ADE4A" stroke="#0B0E17" stroke-width="3"/>
+        <rect x="22" y="24" width="5" height="5" fill="#0B0E17"/>
+        <rect x="37" y="24" width="5" height="5" fill="#0B0E17"/>
+      </svg>
+
+      <!-- 4. BOTTOM-LEFT: Purple Retro Arcade Joystick Controller resting over Fluffy Cream Clouds -->
+      <svg style="--rot: -6deg;" class="sticker-float absolute bottom-14 left-2 sm:bottom-16 sm:left-8 lg:left-16 w-28 h-24 sm:w-40 sm:h-32 z-20 pointer-events-none" viewBox="0 0 160 125" fill="none">
+        <!-- Shadow -->
+        <rect x="18" y="42" width="106" height="60" rx="8" transform="rotate(15 18 42)" fill="#0B0E17" transform-origin="center"/>
+        <!-- Purple Base -->
+        <rect x="16" y="38" width="106" height="60" rx="8" transform="rotate(15 16 38)" fill="#4C1D95" stroke="#0B0E17" stroke-width="3.5"/>
+        <!-- 3D Side Extrusion -->
+        <path d="M12 52L2 68L82 114L114 96" fill="#3B0764" stroke="#0B0E17" stroke-width="3.5" stroke-linejoin="round"/>
+        <!-- Green, Yellow, Pink Buttons -->
+        <circle cx="44" cy="64" r="11" fill="#4ADE4A" stroke="#0B0E17" stroke-width="3"/>
+        <circle cx="68" cy="60" r="10" fill="#F9D435" stroke="#0B0E17" stroke-width="3"/>
+        <circle cx="70" cy="83" r="10" fill="#F472B6" stroke="#0B0E17" stroke-width="3"/>
+        <!-- Joystick Shaft & Orange Ball Top -->
+        <path d="M98 73L112 46" stroke="#0B0E17" stroke-width="6" stroke-linecap="round"/>
+        <circle cx="114" cy="43" r="13" fill="#F97316" stroke="#0B0E17" stroke-width="3.5"/>
+        <circle cx="110" cy="39" r="3.5" fill="#FDBA74"/>
+      </svg>
+
+      <!-- 5. FLUFFY CREAM (#FDF6D8) CLOUD SILHOUETTES in Bottom-Left & Bottom-Right Corners -->
+      <svg class="absolute bottom-2 left-0 w-72 sm:w-[440px] text-cream pointer-events-none z-10" viewBox="0 0 440 140" fill="currentColor">
+        <path d="M0 140V42C26 32 56 42 70 64C88 46 122 52 136 76C156 66 184 76 194 98C214 90 238 102 246 124C262 120 278 128 284 140H0Z"/>
+      </svg>
+      <svg class="absolute bottom-2 right-0 w-72 sm:w-[440px] text-cream pointer-events-none z-10" viewBox="0 0 440 140" fill="currentColor">
+        <path d="M440 140V32C408 28 382 46 372 72C350 62 322 76 314 98C292 90 268 102 260 122C242 118 224 128 218 140H440Z"/>
+      </svg>
+
+      <!-- =================================================================== -->
+      <!-- CENTERED HERO LOCKUP (Exact symmetry of GrowthX Off Campus)          -->
+      <!-- =================================================================== -->
+      <div class="relative z-20 max-w-4xl mx-auto text-center flex flex-col items-center">
+
+        <!-- Top Center Micro-Header: "Stuti Gupta presents" -->
+        <div class="inline-flex items-center gap-2 mb-3 sm:mb-4">
+          <span class="font-extrabold text-white text-base sm:text-xl tracking-tight">Stuti Gupta</span>
+          <span class="font-medium text-white/90 text-xs sm:text-base">presents</span>
+        </div>
+
+        <!-- MASSIVE COLLEGIATE BLOCK LOCKUP ("STUTI" / "GUPTA") WITH OVERLAPPING STICKERS -->
+        <div class="relative inline-block select-none mb-4 sm:mb-5 px-6 sm:px-12">
+          
+          <!-- Overlapping Sticker A: Neon Green Starburst behind Left Side -->
+          <svg class="absolute -left-2 sm:left-2 top-3 sm:top-4 w-24 h-24 sm:w-36 sm:h-36 pointer-events-none z-0" viewBox="0 0 140 140" fill="none">
+            <polygon points="70,5 85,48 135,32 98,68 132,108 82,92 68,136 52,92 8,112 42,70 6,34 54,48" fill="#22C55E"/>
+          </svg>
+
+          <!-- Overlapping Sticker B: Blue Disc / Frisbee on Top-Left of the Word -->
+          <svg class="absolute left-3 sm:left-10 -top-2 sm:-top-3 w-12 h-9 sm:w-16 sm:h-12 -rotate-12 pointer-events-none z-20" viewBox="0 0 80 54" fill="none">
+            <ellipse cx="40" cy="27" rx="34" ry="18" fill="#0B0E17" transform="translate(2, 3)"/>
+            <ellipse cx="40" cy="27" rx="34" ry="18" fill="#3B82F6" stroke="#0B0E17" stroke-width="3.5"/>
+            <ellipse cx="40" cy="24" rx="22" ry="10" fill="#60A5FA" stroke="#0B0E17" stroke-width="2.5"/>
+          </svg>
+
+          <!-- Overlapping Sticker C: Yellow Hand-Drawn Flower / Scribble Loop on Top-Right -->
+          <svg class="absolute right-2 sm:right-8 -top-3 sm:-top-4 w-16 h-16 sm:w-24 sm:h-24 pointer-events-none z-0" viewBox="0 0 100 100" fill="none">
+            <path d="M50 18C56 4 68 8 64 24C78 14 88 24 74 36C90 36 92 50 76 54C90 64 82 76 68 68C74 84 60 90 52 76C46 92 32 88 38 72C22 82 14 70 28 58C12 56 12 42 28 40C16 28 24 16 38 26C34 10 46 6 50 18Z" stroke="#EAB308" stroke-width="3.5" stroke-linejoin="round"/>
+          </svg>
+
+          <!-- Overlapping Sticker D: Pink Sphere / Golf-Ball with Motion Lines in Middle-Right -->
+          <svg class="absolute right-6 sm:right-14 top-1/2 -translate-y-1/2 w-14 h-12 sm:w-20 sm:h-16 pointer-events-none z-20" viewBox="0 0 90 70" fill="none">
+            <!-- Motion speed lines -->
+            <path d="M6 20L24 28M2 32L22 38M10 44L26 46" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- Pink Sphere -->
+            <circle cx="48" cy="36" r="18" fill="#0B0E17" transform="translate(2, 3)"/>
+            <circle cx="48" cy="36" r="18" fill="#F472B6" stroke="#0B0E17" stroke-width="3"/>
+            <circle cx="43" cy="31" r="2" fill="#0B0E17"/>
+            <circle cx="51" cy="29" r="2" fill="#0B0E17"/>
+            <circle cx="47" cy="37" r="2" fill="#0B0E17"/>
+            <circle cx="54" cy="36" r="2" fill="#0B0E17"/>
+          </svg>
+
+          <!-- Overlapping Sticker E: Tiny Lime Pixel Bug on Far Right -->
+          <svg class="absolute right-1 sm:right-6 bottom-6 sm:bottom-8 w-8 h-8 sm:w-10 sm:h-10 rotate-12 pointer-events-none z-20" viewBox="0 0 40 40" fill="none">
+            <rect x="11" y="10" width="18" height="20" rx="6" fill="#A3E635" stroke="#0B0E17" stroke-width="2.5"/>
+            <path d="M6 14L11 16M6 20H11M6 26L11 24M34 14L29 16M34 20H29M34 26L29 24M15 6L17 10M25 6L23 10" stroke="#0B0E17" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+
+          <!-- Varsity / Collegiate Block Display Words -->
+          <h1 class="relative z-10 collegiate-title text-6xl sm:text-8xl md:text-[6.5rem] lg:text-[7.5rem] uppercase tracking-wider">
+            <span class="block">STUTI</span>
+            <span class="block mt-1">GUPTA</span>
+          </h1>
+        </div>
+
+        <!-- "Forward Deployed Engineer at TechLadder.ai" (Mirroring "Sponsored by aws" placement) -->
+        <div class="mb-7 sm:mb-9 flex flex-col items-center">
+          <span class="text-xs sm:text-sm font-medium text-white/90 tracking-wide">Forward Deployed Engineer at</span>
+          <div class="mt-1 inline-flex items-center gap-1.5">
+            <span class="font-extrabold text-xl sm:text-2xl tracking-tight text-white">TechLadder<span class="text-marigold">.ai</span></span>
+          </div>
+        </div>
+
+        <!-- Bold Cream (#FDF6D8) Centered Display Headline (User's exact requested text) -->
+        <h2 class="font-extrabold text-2xl sm:text-4xl md:text-[2.75rem] text-cream leading-[1.12] tracking-tight max-w-2xl mx-auto mb-4">
+          Crafting Digital Experiences<br class="hidden sm:inline" /> That Inspire &amp; Engage
+        </h2>
+
+        <!-- Crisp White Centered Body Copy (max-width 620px, User's exact requested text) -->
+        <p class="text-sm sm:text-base md:text-[17px] text-white/95 font-medium leading-relaxed max-w-[620px] mx-auto mb-8">
+          I build accessible, responsive, and performant web applications using modern technologies that solve real-world problems and deliver exceptional user experiences.
+        </p>
+
+        <!-- Signature Marigold Yellow (#F9D435) Pill CTA Button + Secondary Resume/Contact Link -->
+        <div class="flex flex-wrap items-center justify-center gap-3.5">
+          <a href="#work" class="brutal-btn bg-marigold hover:bg-marigoldHover text-inkBlack font-extrabold text-sm sm:text-base px-8 py-3.5 rounded-full inline-flex items-center gap-2">
+            <span>Explore my work</span>
+          </a>
+          <a href="#about" class="brutal-btn bg-cream hover:bg-white text-inkBlack font-extrabold text-sm sm:text-base px-6 py-3.5 rounded-full inline-flex items-center gap-2">
+            <span>Meet Stuti</span>
+            <span class="w-2 h-2 rounded-full bg-neonGreen border border-inkBlack"></span>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- 6. BOTTOM EDGE: Slightly Tilted Acid-Lime (#E5F542) Ticker Tape with Black Borders -->
+      <div class="absolute -bottom-1 left-[-2%] w-[104%] bg-acidLime border-y-[2.5px] border-inkBlack py-2.5 -rotate-[1.3deg] z-30 shadow-md">
+        <div class="marquee-track font-mono font-bold text-xs sm:text-sm tracking-wider text-inkBlack uppercase">
+          <span class="mx-4">STUTI GUPTA &bull; FULL-STACK &amp; AI SYSTEMS &bull; TECHLADDER.AI &bull; 500+ DSA SOLVED &bull; RCEW CSE '27 &bull;</span>
+          <span class="mx-4">STUTI GUPTA &bull; FULL-STACK &amp; AI SYSTEMS &bull; TECHLADDER.AI &bull; 500+ DSA SOLVED &bull; RCEW CSE '27 &bull;</span>
+          <span class="mx-4">STUTI GUPTA &bull; FULL-STACK &amp; AI SYSTEMS &bull; TECHLADDER.AI &bull; 500+ DSA SOLVED &bull; RCEW CSE '27 &bull;</span>
+          <span class="mx-4">STUTI GUPTA &bull; FULL-STACK &amp; AI SYSTEMS &bull; TECHLADDER.AI &bull; 500+ DSA SOLVED &bull; RCEW CSE '27 &bull;</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 1. ABOUT & AUTO-ROTATING 3-PHOTO POLAROID STORY CARD                  -->
+    <!-- ===================================================================== -->
+    <section id="about" class="bg-cream py-20 md:py-24 border-b-2 border-inkBlack">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          
+          <!-- Left Column: Auto-Rotating 3-Photo Polaroid Story Card + Upload Support -->
+          <div class="lg:col-span-5 reveal">
+            <div class="relative max-w-sm mx-auto">
+              <!-- Floating Sticker Tag -->
+              <div class="absolute -top-4 -left-3 z-30 bg-bubblePink text-inkBlack font-mono font-bold text-xs px-3.5 py-1.5 rounded-full border-2 border-inkBlack shadow-brutal -rotate-6">
+                CSE '27 • CGPA 8.29
+              </div>
+
+              <div class="brutal-card bg-creamLight rounded-3xl p-4 sm:p-5">
+                <!-- Story Frame (Auto-cycles every 3 seconds) -->
+                <div class="relative rounded-2xl overflow-hidden border-2 border-inkBlack aspect-[4/4.5] bg-inkBlack">
+                  
+                  <!-- 3-Segment Story Progress Bar -->
+                  <div class="absolute top-3 left-3 right-3 z-20 flex gap-1.5">
+                    <div class="h-1 flex-1 bg-white/35 rounded-full overflow-hidden">
+                      <div class="story-bar-inner h-full bg-marigold rounded-full w-full"></div>
+                    </div>
+                    <div class="h-1 flex-1 bg-white/35 rounded-full overflow-hidden">
+                      <div class="story-bar-inner h-full bg-marigold rounded-full w-0"></div>
+                    </div>
+                    <div class="h-1 flex-1 bg-white/35 rounded-full overflow-hidden">
+                      <div class="story-bar-inner h-full bg-marigold rounded-full w-0"></div>
+                    </div>
+                  </div>
+
+                  <!-- Live Slide Counter -->
+                  <div class="absolute top-7 right-3 z-20 px-2.5 py-0.5 rounded-full bg-inkBlack/80 text-cream font-mono text-[10px] font-bold border border-white/20">
+                    <span id="slide-counter">1</span>/3
+                  </div>
+
+                  <!-- Frame 1: Illustrated Builder Portrait Card (Self-contained SVG Data URI) -->
+                  <img 
+                    id="polaroid-img-0"
+                    src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 450'%3E%3Crect width='400' height='450' fill='%231548D3'/%3E%3Ccircle cx='330' cy='80' r='45' fill='%23F9D435' opacity='0.9'/%3E%3Ccircle cx='70' cy='360' r='60' fill='%234ADE4A' opacity='0.25'/%3E%3Crect x='40' y='45' width='320' height='360' rx='24' fill='%23FDF6D8' stroke='%230B0E17' stroke-width='5'/%3E%3Ccircle cx='200' cy='165' r='56' fill='%23F472B6' stroke='%230B0E17' stroke-width='4'/%3E%3Cpath d='M155 155 Q200 95 245 155 Q255 215 235 230 Q200 205 165 230 Q145 215 155 155Z' fill='%230B0E17'/%3E%3Ccircle cx='200' cy='170' r='36' fill='%23FDE68A' stroke='%230B0E17' stroke-width='3.5'/%3E%3Ccircle cx='188' cy='166' r='3.5' fill='%230B0E17'/%3E%3Ccircle cx='212' cy='166' r='3.5' fill='%230B0E17'/%3E%3Cpath d='M189 182 Q200 192 211 182' stroke='%230B0E17' stroke-width='3.5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M125 320 C125 255 275 255 275 320 Z' fill='%231548D3' stroke='%230B0E17' stroke-width='4'/%3E%3Crect x='85' y='338' width='230' height='40' rx='12' fill='%23E5F542' stroke='%230B0E17' stroke-width='3'/%3E%3Ctext x='200' y='363' font-family='monospace' font-weight='bold' font-size='14' fill='%230B0E17' text-anchor='middle'%3ESTUTI GUPTA // FDE%3C/text%3E%3C/svg%3E"
+                    alt="Stuti Gupta — Builder Frame 1"
+                    class="polaroid-slide photo-slide active object-cover"
+                  />
+
+                  <!-- Frame 2: AI & Voice Systems Engineering Frame -->
+                  <img 
+                    id="polaroid-img-1"
+                    src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 450'%3E%3Crect width='400' height='450' fill='%230B0E17'/%3E%3Crect x='32' y='45' width='336' height='360' rx='22' fill='%231548D3' stroke='%23FDF6D8' stroke-width='4'/%3E%3Crect x='58' y='75' width='284' height='175' rx='14' fill='%230B0E17' stroke='%23FDF6D8' stroke-width='3'/%3E%3Ccircle cx='82' cy='96' r='6' fill='%23F472B6'/%3E%3Ccircle cx='102' cy='96' r='6' fill='%23F9D435'/%3E%3Ccircle cx='122' cy='96' r='6' fill='%234ADE4A'/%3E%3Ctext x='76' y='135' font-family='monospace' font-size='14' fill='%234ADE4A'%3E%24 deploy --agent mochi%3C/text%3E%3Ctext x='76' y='162' font-family='monospace' font-size='13' fill='%23FDF6D8'%3E%E2%9C%93 Pipecat + LiveKit Audio%3C/text%3E%3Ctext x='76' y='188' font-family='monospace' font-size='13' fill='%23FDF6D8'%3E%E2%9C%93 Function Calling Ready%3C/text%3E%3Ctext x='76' y='214' font-family='monospace' font-size='13' fill='%23F9D435'%3E%E2%9C%93 Latency: 140ms%3C/text%3E%3Crect x='58' y='275' width='135' height='95' rx='14' fill='%23F9D435' stroke='%230B0E17' stroke-width='3'/%3E%3Ctext x='125' y='320' font-family='sans-serif' font-weight='900' font-size='26' fill='%230B0E17' text-anchor='middle'%3E500+%3C/text%3E%3Ctext x='125' y='344' font-family='monospace' font-weight='bold' font-size='11' fill='%230B0E17' text-anchor='middle'%3EDSA SOLVED%3C/text%3E%3Crect x='207' y='275' width='135' height='95' rx='14' fill='%234ADE4A' stroke='%230B0E17' stroke-width='3'/%3E%3Ctext x='274' y='320' font-family='sans-serif' font-weight='900' font-size='26' fill='%230B0E17' text-anchor='middle'%3E8.29%3C/text%3E%3Ctext x='274' y='344' font-family='monospace' font-weight='bold' font-size='11' fill='%230B0E17' text-anchor='middle'%3ECSE CGPA%3C/text%3E%3C/svg%3E"
+                    alt="Stuti Gupta — AI & Voice Systems Frame 2"
+                    class="polaroid-slide photo-slide object-cover"
+                  />
+
+                  <!-- Frame 3: Community & Hackathon Impact Frame -->
+                  <img 
+                    id="polaroid-img-2"
+                    src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 450'%3E%3Crect width='400' height='450' fill='%23F472B6'/%3E%3Crect x='34' y='45' width='332' height='360' rx='24' fill='%23FDF6D8' stroke='%230B0E17' stroke-width='5'/%3E%3Crect x='62' y='78' width='276' height='76' rx='16' fill='%231548D3' stroke='%230B0E17' stroke-width='3.5'/%3E%3Ctext x='200' y='113' font-family='sans-serif' font-weight='900' font-size='24' fill='%23FDF6D8' text-anchor='middle'%3E24.8K+ Followers%3C/text%3E%3Ctext x='200' y='136' font-family='monospace' font-weight='bold' font-size='11' fill='%23F9D435' text-anchor='middle'%3ELINKEDIN TECH COMMUNITY%3C/text%3E%3Crect x='62' y='175' width='276' height='86' rx='16' fill='%23E5F542' stroke='%230B0E17' stroke-width='3.5'/%3E%3Ctext x='200' y='213' font-family='sans-serif' font-weight='900' font-size='19' fill='%230B0E17' text-anchor='middle'%3EIIT Bombay Finalist%3C/text%3E%3Ctext x='200' y='237' font-family='monospace' font-weight='bold' font-size='11' fill='%230B0E17' text-anchor='middle'%3ESANRAKSHAN %E2%80%A2 SECURE HER%3C/text%3E%3Crect x='62' y='282' width='276' height='86' rx='16' fill='%234ADE4A' stroke='%230B0E17' stroke-width='3.5'/%3E%3Ctext x='200' y='320' font-family='sans-serif' font-weight='900' font-size='19' fill='%230B0E17' text-anchor='middle'%3EOpen Source Dev%3C/text%3E%3Ctext x='200' y='344' font-family='monospace' font-weight='bold' font-size='11' fill='%230B0E17' text-anchor='middle'%3EFIREFOX DEVTOOLS %E2%80%A2 MEGALLM%3C/text%3E%3C/svg%3E"
+                    alt="Stuti Gupta — Community & Impact Frame 3"
+                    class="polaroid-slide photo-slide object-cover"
+                  />
+
+                  <!-- Bottom Caption + Prev/Next Controls -->
+                  <div class="absolute bottom-0 inset-x-0 z-20 bg-gradient-to-t from-inkBlack/90 via-inkBlack/45 to-transparent p-3.5 pt-8 flex items-end justify-between">
+                    <span id="polaroid-caption" class="font-mono text-[11px] font-bold text-cream">
+                      01 // Stuti Gupta • Kota, Rajasthan
+                    </span>
+                    <div class="flex gap-1.5">
+                      <button type="button" onclick="stepCarousel(-1)" aria-label="Previous frame" class="w-7 h-7 rounded-full bg-cream hover:bg-marigold text-inkBlack border border-inkBlack flex items-center justify-center text-xs font-extrabold cursor-pointer">&lsaquo;</button>
+                      <button type="button" onclick="stepCarousel(1)" aria-label="Next frame" class="w-7 h-7 rounded-full bg-cream hover:bg-marigold text-inkBlack border border-inkBlack flex items-center justify-center text-xs font-extrabold cursor-pointer">&rsaquo;</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Interactive Upload Control so Stuti can drop her own 2-3 photos directly -->
+                <div class="mt-3.5 flex items-center justify-between gap-2 px-1">
+                  <div>
+                    <p class="font-extrabold text-sm text-inkBlack leading-tight">Stuti Gupta</p>
+                    <p class="font-mono text-[11px] text-inkBlack/75">Auto-cycling 3-frame reel</p>
+                  </div>
+                  <label class="brutal-btn bg-marigold hover:bg-marigoldHover text-inkBlack font-mono font-bold text-[11px] px-3 py-1.5 rounded-full cursor-pointer inline-flex items-center gap-1.5">
+                    <span>📷 Load My Photos</span>
+                    <input id="photo-upload-input" type="file" accept="image/*" multiple class="hidden" onchange="handleUserPhotosUpload(event)" />
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Education, Summary & Community Stats -->
+          <div class="lg:col-span-7 space-y-6 reveal">
+            <span class="inline-block font-mono text-xs font-bold uppercase px-3 py-1 rounded-full bg-royalBlue text-white border-2 border-inkBlack shadow-brutal">
+              01 / Summary &amp; Education
+            </span>
+            <h2 class="font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight text-inkBlack leading-tight">
+              Full-stack engineering meets conversational AI workflows.
+            </h2>
+            <p class="text-sm sm:text-base text-inkBlack/85 leading-relaxed font-medium">
+              Computer Science undergraduate (2027) and Forward Deployed Engineer Intern at <strong>TechLadder.ai</strong> with hands-on experience in full-stack web development and AI-powered product workflows. Proficient in <strong>Java, Python, Data Structures &amp; Algorithms, REST APIs, and SQL/NoSQL databases</strong>, with practical exposure to conversational &amp; voice AI agents and modular software engineering.
+            </p>
+
+            <!-- Education Highlight Card -->
+            <div class="brutal-card bg-creamLight rounded-2xl p-5 sm:p-6">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                  <span class="inline-block font-mono text-[11px] font-bold uppercase px-2.5 py-0.5 rounded-full bg-acidLime border border-inkBlack mb-2">
+                    2023 — 2027 • KOTA, RAJASTHAN
+                  </span>
+                  <h3 class="font-extrabold text-lg sm:text-xl text-inkBlack">Rajasthan College of Engineering for Women</h3>
+                  <p class="text-sm font-bold text-royalBlue mt-0.5">B.Tech in Computer Science and Engineering</p>
+                </div>
+                <div class="bg-marigold border-2 border-inkBlack rounded-2xl px-4 py-2.5 text-center self-start sm:self-center shadow-brutal">
+                  <p class="font-mono text-[10px] font-bold uppercase text-inkBlack">CGPA</p>
+                  <p class="font-extrabold text-xl text-inkBlack">8.29<span class="text-xs font-bold">/10</span></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3 Key Numbers Strip -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-1">
+              <div class="brutal-card bg-creamLight rounded-2xl p-4">
+                <span class="inline-block text-[11px] font-mono font-bold bg-neonGreen px-2 py-0.5 rounded border border-inkBlack mb-1.5">DSA</span>
+                <p class="font-extrabold text-2xl text-inkBlack">500+</p>
+                <p class="text-xs text-inkBlack/75 font-medium">LeetCode, Codeforces &amp; CodeChef</p>
+              </div>
+              <div class="brutal-card bg-creamLight rounded-2xl p-4">
+                <span class="inline-block text-[11px] font-mono font-bold bg-bubblePink px-2 py-0.5 rounded border border-inkBlack mb-1.5">COMMUNITY</span>
+                <p class="font-extrabold text-2xl text-inkBlack">24.8K+</p>
+                <p class="text-xs text-inkBlack/75 font-medium">LinkedIn Followers (500+ Posts)</p>
+              </div>
+              <div class="brutal-card bg-creamLight rounded-2xl p-4">
+                <span class="inline-block text-[11px] font-mono font-bold bg-marigold px-2 py-0.5 rounded border border-inkBlack mb-1.5">FINALIST</span>
+                <p class="font-extrabold text-xl text-inkBlack">IIT Bombay</p>
+                <p class="text-xs text-inkBlack/75 font-medium">Sanrakshan Event (Secure Her)</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 2. EXPERIENCE SECTION (TechLadder.ai FDE Intern)                      -->
+    <!-- ===================================================================== -->
+    <section id="experience" class="bg-creamLight py-20 md:py-24 border-b-2 border-inkBlack">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <div class="mb-12 reveal">
+          <span class="inline-block font-mono text-xs font-bold uppercase px-3 py-1 rounded-full bg-marigold text-inkBlack border-2 border-inkBlack shadow-brutal mb-3">
+            02 / Work Experience
+          </span>
+          <h2 class="font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight text-inkBlack">
+            Engineering in production.
+          </h2>
+        </div>
+
+        <div class="brutal-card bg-cream rounded-3xl p-6 sm:p-9 reveal">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b-2 border-inkBlack/15">
+            <div>
+              <span class="inline-block font-mono text-xs font-bold text-inkBlack bg-neonGreen px-3 py-1 rounded-full border border-inkBlack mb-2.5">
+                SEP 2026 — PRESENT
+              </span>
+              <h3 class="font-extrabold text-2xl sm:text-3xl text-inkBlack">Forward Deployed Engineer (FDE) Intern</h3>
+              <p class="font-mono text-base font-bold text-royalBlue mt-1">TechLadder.ai</p>
+            </div>
+            <div class="flex flex-wrap gap-2 font-mono text-xs font-bold">
+              <span class="px-3 py-1.5 rounded-full bg-white border-2 border-inkBlack">Mochi Product</span>
+              <span class="px-3 py-1.5 rounded-full bg-white border-2 border-inkBlack">Pipecat &amp; LiveKit</span>
+              <span class="px-3 py-1.5 rounded-full bg-white border-2 border-inkBlack">Function Calling</span>
+            </div>
+          </div>
+
+          <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div class="p-5 rounded-2xl bg-creamLight border-2 border-inkBlack">
+              <span class="font-mono text-xs font-bold text-royalBlue uppercase">01 // Product Engineering</span>
+              <p class="mt-2 text-sm text-inkBlack/85 font-medium leading-relaxed">
+                Contributing to end-to-end product engineering for <strong>Mochi</strong>, collaborating on application workflows, feature implementation, and iterative product improvements.
+              </p>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-creamLight border-2 border-inkBlack">
+              <span class="font-mono text-xs font-bold text-royalBlue uppercase">02 // Voice &amp; AI Agents</span>
+              <p class="mt-2 text-sm text-inkBlack/85 font-medium leading-relaxed">
+                Building and testing conversational and voice AI agent workflows involving <strong>function calling</strong>, agent orchestration, and real-time audio frameworks (<strong>Pipecat, LiveKit</strong>).
+              </p>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-creamLight border-2 border-inkBlack">
+              <span class="font-mono text-xs font-bold text-royalBlue uppercase">03 // GTM &amp; Growth</span>
+              <p class="mt-2 text-sm text-inkBlack/85 font-medium leading-relaxed">
+                Supporting technical go-to-market readiness and SEO execution through structured progress tracking, product positioning alignment, and cross-functional delivery.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 3. SELECTED PROJECTS GRID WITH INTERACTIVE CASE-STUDY MODAL           -->
+    <!-- ===================================================================== -->
+    <section id="work" class="bg-cream py-20 md:py-24 border-b-2 border-inkBlack">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 reveal">
+          <div>
+            <span class="inline-block font-mono text-xs font-bold uppercase px-3 py-1 rounded-full bg-royalBlue text-white border-2 border-inkBlack shadow-brutal mb-3">
+              03 / Selected Projects
+            </span>
+            <h2 class="font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight text-inkBlack">
+              Builds that solve real problems.
+            </h2>
+          </div>
+
+          <!-- Filter Pills -->
+          <div class="inline-flex flex-wrap gap-2">
+            <button onclick="filterProjects('all')" data-filter="all" class="filter-btn brutal-btn px-4 py-2 rounded-full text-xs font-extrabold bg-marigold text-inkBlack cursor-pointer">
+              All Projects (3)
+            </button>
+            <button onclick="filterProjects('fullstack')" data-filter="fullstack" class="filter-btn brutal-btn px-4 py-2 rounded-full text-xs font-extrabold bg-creamLight text-inkBlack cursor-pointer">
+              Full-Stack Web
+            </button>
+            <button onclick="filterProjects('ai')" data-filter="ai" class="filter-btn brutal-btn px-4 py-2 rounded-full text-xs font-extrabold bg-creamLight text-inkBlack cursor-pointer">
+              Computer Vision / AI
+            </button>
+          </div>
+        </div>
+
+        <!-- 3-Column Neo-Brutalist Project Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <!-- Project 1: Automated Contest Tracker -->
+          <article onclick="openProjectModal('contest')" data-category="fullstack" class="project-card brutal-card bg-creamLight rounded-3xl p-6 sm:p-7 flex flex-col justify-between cursor-pointer reveal">
+            <div>
+              <div class="flex items-center justify-between gap-3 mb-5">
+                <span class="font-mono text-[11px] font-bold px-3 py-1 rounded-full bg-acidLime border-2 border-inkBlack text-inkBlack">
+                  NEXT.JS • REST APIS
+                </span>
+                <a href="https://github.com/stuticoder123" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" aria-label="GitHub Repository" class="w-9 h-9 rounded-full bg-marigold border-2 border-inkBlack flex items-center justify-center font-extrabold text-inkBlack hover:scale-105 transition-transform">
+                  &nearr;
+                </a>
+              </div>
+
+              <h3 class="font-extrabold text-xl sm:text-2xl text-inkBlack mb-3">
+                Automated Contest Tracker
+              </h3>
+
+              <p class="text-sm text-inkBlack/80 leading-relaxed mb-6 font-medium">
+                Engineered a centralized coding contest dashboard that aggregates live schedule data from multiple competitive programming platforms via REST APIs with multi-criteria filtering.
+              </p>
+            </div>
+
+            <div class="pt-4 border-t-2 border-inkBlack/15 space-y-3">
+              <div class="flex flex-wrap gap-1.5 font-mono text-[11px] font-bold">
+                <span class="px-2.5 py-1 rounded-lg bg-white border border-inkBlack">Next.js</span>
+                <span class="px-2.5 py-1 rounded-lg bg-white border border-inkBlack">Tailwind CSS</span>
+                <span class="px-2.5 py-1 rounded-lg bg-white border border-inkBlack">JavaScript</span>
+                <span class="px-2.5 py-1 rounded-lg bg-white border border-inkBlack">REST APIs</span>
+              </div>
+              <p class="font-mono text-xs font-bold underline">Inspect Architecture &rarr;</p>
+            </div>
+          </article>
+
+          <!-- Project 2: AlumConnect -->
+          <article onclick="openProjectModal('alumconnect')" data-category="fullstack" class="project-card brutal-card bg-creamLight rounded-3xl p-6 sm:p-7 flex flex-col justify-between cursor-pointer reveal">
+            <div>
+              <div class="flex items-center justify-between gap-3 mb-5">
+                <span class="font-mono text-[11px] font-bold px-3 py-1 rounded-full bg-neonGreen border-2 border-inkBlack text-inkBlack">
+                  FULL-STACK • MERN + SUPABASE
+                </span>
+                <a href="https://github.com/stuticoder123" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" aria-label="GitHub Repository" class="w-9 h-9 rounded-full bg-marigold border-2 border-inkBlack flex items-center justify-center font-extrabold text-inkBlack hover:scale-105 transition-transform">
+                  &nearr;
+                </a>
+              </div>
+
+              <h3 class="font-extrabold text-xl sm:text-2xl text-inkBlack mb-3">
+                AlumConnect
+              </h3>
+
+              <p class="text-sm text-inkBlack/80 leading-relaxed mb-6 font-medium">
+                Built a full-stack alumni networking platform enabling structured mentorship, profile management, and internship/opportunity sharing between students and alumni.
+              </p>
+            </div>
+
+            <div class="pt-4 border-t-2 border-inkBlack/15 space-y-3">
+              <div class="flex flex-wrap gap-1.5 font-mono text-[11px] font-bold">
+                <span class="px-2.5 py-1 rounded-lg bg-white border border-inkBlack">React.js</span>
+                <span class="px-2.5 py-1 rounded-lg bg-white border border-inkBlack">TypeScript</span>
+                <span class="px-2.5 py-1 rounded-lg bg-white border border-inkBlack">Node/Express</span>
+                <span class="px-2.5 py-1 rounded-lg bg-white border border-inkBlack">MongoDB</span>
+                <span class="px-2.5 py-1 rounded-lg bg-white border border-inkBlack">Supabase</span>
+              </div>
+              <p class="font-mono text-xs font-bold underline">Inspect Architecture &rarr;</p>
+            </div>
+          </article>
+
+          <!-- Project 3: AI Rock Paper Scissor using OpenCV -->
+          <article onclick="openProjectModal('rps')" data-category="ai" class="project-card brutal-card bg-creamLight rounded-3xl p-6 sm:p-7 flex flex-col justify-between cursor-pointer reveal">
+            <div>
+              <div class="flex items-center justify-between gap-3 mb-5">
+                <span class="font-mono text-[11px] font-bold px-3 py-1 rounded-full bg-bubblePink border-2 border-inkBlack text-inkBlack">
+                  PYTHON • OPENCV
+                </span>
+                <a href="https://github.com/stuticoder123" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" aria-label="GitHub Repository" class="w-9 h-9 rounded-full bg-marigold border-2 border-inkBlack flex items-center justify-center font-extrabold text-inkBlack hover:scale-105 transition-transform">
+                  &nearr;
+                </a>
+              </div>
+
+              <h3 class="font-extrabold text-xl sm:text-2xl text-inkBlack mb-3">
+                AI Rock Paper Scissor using OpenCV
+              </h3>
+
+              <p class="text-sm text-inkBlack/80 leading-relaxed mb-6 font-medium">
+                Developed a real-time webcam gesture recognition application using Python and OpenCV to detect hand contours and classify Rock-Paper-Scissors moves with low-latency gameplay.
+              </p>
+            </div>
+
+            <div class="pt-4 border-t-2 border-inkBlack/15 space-y-3">
+              <div class="flex flex-wrap gap-1.5 font-mono text-[11px] font-bold">
+                <span class="px-2.5 py-1 rounded-lg bg-white border border-inkBlack">Python</span>
+                <span class="px-2.5 py-1 rounded-lg bg-white border border-inkBlack">OpenCV</span>
+                <span class="px-2.5 py-1 rounded-lg bg-white border border-inkBlack">Computer Vision</span>
+              </div>
+              <p class="font-mono text-xs font-bold underline">Inspect Architecture &rarr;</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 4. TECHNICAL ARSENAL (All 6 Resume Skill Categories)                  -->
+    <!-- ===================================================================== -->
+    <section id="stack" class="bg-creamLight py-20 md:py-24 border-b-2 border-inkBlack">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <div class="mb-12 reveal">
+          <span class="inline-block font-mono text-xs font-bold uppercase px-3 py-1 rounded-full bg-acidLime text-inkBlack border-2 border-inkBlack shadow-brutal mb-3">
+            04 / Technical Arsenal
+          </span>
+          <h2 class="font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight text-inkBlack">
+            Languages, AI agents &amp; stack.
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          
+          <!-- Languages -->
+          <div class="brutal-card bg-cream rounded-3xl p-6 reveal">
+            <span class="inline-block font-mono text-xs font-bold px-3 py-1 rounded-full bg-marigold border border-inkBlack mb-4">
+              LANGUAGES
+            </span>
+            <div class="flex flex-wrap gap-2 font-mono text-xs font-bold">
+              <span class="px-3 py-1.5 rounded-xl bg-white border-2 border-inkBlack">Java (DSA)</span>
+              <span class="px-3 py-1.5 rounded-xl bg-white border-2 border-inkBlack">Python</span>
+              <span class="px-3 py-1.5 rounded-xl bg-white border-2 border-inkBlack">JavaScript</span>
+              <span class="px-3 py-1.5 rounded-xl bg-white border-2 border-inkBlack">TypeScript</span>
+              <span class="px-3 py-1.5 rounded-xl bg-white border-2 border-inkBlack">C++</span>
+              <span class="px-3 py-1.5 rounded-xl bg-white border-2 border-inkBlack">SQL</span>
+            </div>
+          </div>
+
+          <!-- AI & Agent Workflows -->
+          <div class="brutal-card bg-cream rounded-3xl p-6 reveal">
+            <span class="inline-block font-mono text-xs font-bold px-3 py-1 rounded-full bg-neonGreen border border-inkBlack mb-4">
+              AI &amp; AGENT WORKFLOWS
+            </span>
+            <div class="flex flex-wrap gap-2 font-mono text-xs font-bold">
+              <span class="px-3 py-1.5 rounded-xl bg-white border-2 border-inkBlack">Generative AI</span>
+              <span class="px-3 py-1.5 rounded-xl bg-white border-2 border-inkBlack">Conversational AI</span>
+              <span class="px-3 py-1.5 rounded-xl bg-white border-2 border-inkBlack">Voice AI Agents</span>
+              <span class="px-3 py-1.5 rounded-xl bg-white border-2 border-inkBlack">Function Calling</span>
+              <span class="px-3 py-1.5 rounded-xl bg-white border-2 border-inkBlack">Pipecat</span>
+              <span class="px-3 py-1.5 rounded-xl bg-white border-2 border-inkBlack">LiveKit</span>
+            </div>
+          </div>
+
+          <!-- Frontend -->
+          <div class="brutal-card bg-cream rounded-3xl p-6 reveal">
+            <span class="inline-block font-mono text-xs font-bold px-3 py-1 rounded-full bg-bubblePink border border-inkBlack mb-4">
+              FRONTEND
+            </span>
+            <div class="flex flex-wrap gap-2 font-mono text-xs font-bold">
+              <span class="px-3 py-1.5 rounded-xl bg-white border-2 border-inkBlack">React.js</span>
+              <span class="px-3 py-1.5 rounded-xl bg-white border-2 border-inkBlack">Next.js</span>
+              <span class="px-3 py-1.5 rounded-xl bg-white border-2 border-inkBlack">Tailwind CSS</span>
+              <span class="px-3 py-1.5 rounded-xl bg-white border-2 border-inkBlack">HTML5</span>
+              <span class="px-3 py-1.5 rounded-xl bg-white border-2 border-inkBlack">CSS3</span>
+            </div>
+          </div>
+
+          <!-- Backend & Databases -->
+          <div class="brutal-card bg-cream rounded-3xl p-6 reveal">
+            <span class="inline-block font-mono text-xs font-bold px-3 py-1 rounded-full bg-royalBlue text-white border border-inkBlack mb-4">
+              BACKEND &amp; DATABASES
+            </span>
+            <div class="flex flex-wrap gap-2 font-mono text-xs font-bold">
+              <span class="px-3 py-1.5 rounded-xl bg-white border-2 border-inkBlack">Node.js</span>
+              <span class="px-3 py-1.5 rounded-xl bg-white border-2 border-inkBlack">Express.js</span>
+              <span class="px-3 py-1.5 rounded-xl bg-white border-2 border-inkBlack">REST APIs</span>
+              <span class="px-3 py-1.5 rounded-xl bg-white border-2 border-inkBlack">MongoDB</span>
+              <span class="px-3 py-1.5 rounded-xl bg-white border-2 border-inkBlack">Supabase</span>
+            </div>
+          </div>
+
+          <!-- Core CS Fundamentals -->
+          <div class="brutal-card bg-cream rounded-3xl p-6 reveal">
+            <span class="inline-block font-mono text-xs font-bold px-3 py-1 rounded-full bg-acidLime border border-inkBlack mb-4">
+              CORE CS FUNDAMENTALS
+            </span>
+            <div class="flex flex-wrap gap-2 font-mono text-xs font-bold">
+              <span class="px-3 py-1.5 rounded-xl bg-white border-2 border-inkBlack">Data Structures &amp; Algorithms</span>
+              <span class="px-3 py-1.5 rounded-xl bg-white border-2 border-inkBlack">OOP</span>
+              <span class="px-3 py-1.5 rounded-xl bg-white border-2 border-inkBlack">DBMS</span>
+              <span class="px-3 py-1.5 rounded-xl bg-white border-2 border-inkBlack">Operating Systems</span>
+              <span class="px-3 py-1.5 rounded-xl bg-white border-2 border-inkBlack">Computer Networks</span>
+            </div>
+          </div>
+
+          <!-- Developer Tools -->
+          <div class="brutal-card bg-cream rounded-3xl p-6 reveal">
+            <span class="inline-block font-mono text-xs font-bold px-3 py-1 rounded-full bg-marigold border border-inkBlack mb-4">
+              DEVELOPER TOOLS
+            </span>
+            <div class="flex flex-wrap gap-2 font-mono text-xs font-bold">
+              <span class="px-3 py-1.5 rounded-xl bg-white border-2 border-inkBlack">Git</span>
+              <span class="px-3 py-1.5 rounded-xl bg-white border-2 border-inkBlack">GitHub</span>
+              <span class="px-3 py-1.5 rounded-xl bg-white border-2 border-inkBlack">Linux</span>
+              <span class="px-3 py-1.5 rounded-xl bg-white border-2 border-inkBlack">VS Code</span>
+              <span class="px-3 py-1.5 rounded-xl bg-white border-2 border-inkBlack">Postman</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 5. ACHIEVEMENTS & OPEN SOURCE                                         -->
+    <!-- ===================================================================== -->
+    <section id="achievements" class="bg-cream py-20 md:py-24 border-b-2 border-inkBlack">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <div class="mb-12 reveal">
+          <span class="inline-block font-mono text-xs font-bold uppercase px-3 py-1 rounded-full bg-bubblePink text-inkBlack border-2 border-inkBlack shadow-brutal mb-3">
+            05 / Achievements &amp; Open Source
+          </span>
+          <h2 class="font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight text-inkBlack">
+            Milestones, fellowships &amp; community.
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <div class="brutal-card bg-creamLight rounded-3xl p-6 reveal">
+            <span class="inline-block font-mono text-xs font-bold px-3 py-1 rounded-full bg-marigold border border-inkBlack mb-3">
+              COMPETITIVE PROGRAMMING
+            </span>
+            <h3 class="font-extrabold text-xl text-inkBlack">500+ DSA Problems Solved</h3>
+            <p class="mt-2 text-sm text-inkBlack/80 font-medium leading-relaxed">
+              Solved over 500 Data Structures &amp; Algorithms problems across <strong>LeetCode, Codeforces, and CodeChef</strong>, building strong algorithmic problem-solving discipline.
+            </p>
+          </div>
+
+          <div class="brutal-card bg-creamLight rounded-3xl p-6 reveal">
+            <span class="inline-block font-mono text-xs font-bold px-3 py-1 rounded-full bg-neonGreen border border-inkBlack mb-3">
+              FELLOWSHIP SELECTION
+            </span>
+            <h3 class="font-extrabold text-xl text-inkBlack">AlgoUniversity Technology Fellowship 2024</h3>
+            <p class="mt-2 text-sm text-inkBlack/80 font-medium leading-relaxed">
+              Ranked among the <strong>Top 4,000 out of 20,000+ applicants</strong> nationwide in the AlgoUniversity Technology Fellowship 2024.
+            </p>
+          </div>
+
+          <div class="brutal-card bg-creamLight rounded-3xl p-6 reveal">
+            <span class="inline-block font-mono text-xs font-bold px-3 py-1 rounded-full bg-acidLime border border-inkBlack mb-3">
+              OPEN SOURCE PARTICIPATION
+            </span>
+            <h3 class="font-extrabold text-xl text-inkBlack">Global Open-Source Contributor</h3>
+            <p class="mt-2 text-sm text-inkBlack/80 font-medium leading-relaxed">
+              Contributed to open-source repositories including <strong>megaLLM, FitMart, firefox-devtools, and timqian/open-source-jobs</strong> through issue resolution, documentation updates, and codebase collaboration.
+            </p>
+          </div>
+
+          <div class="brutal-card bg-creamLight rounded-3xl p-6 reveal">
+            <span class="inline-block font-mono text-xs font-bold px-3 py-1 rounded-full bg-royalBlue text-white border border-inkBlack mb-3">
+              NATIONAL HACKATHON &amp; COMMUNITY
+            </span>
+            <h3 class="font-extrabold text-xl text-inkBlack">IIT Bombay Finalist &amp; 24.8K+ LinkedIn</h3>
+            <p class="mt-2 text-sm text-inkBlack/80 font-medium leading-relaxed">
+              Finalist at <strong>IIT Bombay's Sanrakshan Event</strong> for the <em>Secure Her</em> social-impact initiative, and built a LinkedIn audience of <strong>24.8K+ followers</strong> across 500+ posts on software engineering &amp; AI.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 6. CONTACT FOOTER (Royal Cobalt Blue #1548D3 + Cream Clouds)          -->
+    <!-- ===================================================================== -->
+    <footer id="contact" class="relative bg-royalBlue text-white pt-20 pb-24 overflow-hidden">
+      
+      <!-- Decorative Sparkles & Clouds matching Hero -->
+      <svg class="absolute top-10 left-12 w-5 h-5 text-white pointer-events-none" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z"/>
+      </svg>
+      <svg class="absolute top-16 right-16 w-6 h-6 text-white pointer-events-none" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z"/>
+      </svg>
+
+      <!-- Bottom Cream Clouds -->
+      <svg class="absolute bottom-0 left-0 w-64 sm:w-96 text-cream pointer-events-none" viewBox="0 0 400 110" fill="currentColor">
+        <path d="M0 110V45C24 38 50 48 62 68C78 54 106 60 118 80C138 72 162 84 170 110H0Z"/>
+      </svg>
+      <svg class="absolute bottom-0 right-0 w-64 sm:w-96 text-cream pointer-events-none" viewBox="0 0 400 110" fill="currentColor">
+        <path d="M400 110V40C372 38 348 54 340 76C320 68 296 80 290 110H400Z"/>
+      </svg>
+
+      <div class="relative z-10 max-w-4xl mx-auto px-5 sm:px-8 text-center reveal">
+        <p class="font-bold text-sm sm:text-base text-white/90 mb-3">Stuti Gupta &bull; +91-8302657109 &bull; Kota, Rajasthan</p>
+        
+        <h2 class="collegiate-title text-4xl sm:text-6xl leading-none uppercase mb-6">
+          LET'S BUILD SOMETHING GREAT.
+        </h2>
+
+        <p class="text-sm sm:text-base text-white/95 max-w-xl mx-auto mb-8 font-medium leading-relaxed">
+          Open to Full-Stack Engineering, Forward Deployed Engineer, and Conversational AI roles. Reach out directly or copy my email below.
+        </p>
+
+        <!-- Primary Marigold Yellow Pill CTA + Copy Email Button -->
+        <div class="flex flex-wrap items-center justify-center gap-4 mb-12">
+          <button onclick="openContactModal()" class="brutal-btn bg-marigold hover:bg-marigoldHover text-inkBlack font-extrabold text-sm sm:text-base px-8 py-4 rounded-full cursor-pointer">
+            Send a Message
+          </button>
+          <button onclick="copyEmail()" class="brutal-btn bg-cream hover:bg-white text-inkBlack font-mono font-bold text-xs sm:text-sm px-6 py-4 rounded-full inline-flex items-center gap-2 cursor-pointer">
+            <span>stuticoder123@gmail.com</span>
+            <span>📋</span>
+          </button>
+        </div>
+
+        <!-- Exact Social & Contact Links from Resume -->
+        <div class="inline-flex flex-wrap items-center justify-center gap-4 sm:gap-6 px-6 py-3 rounded-full bg-royalBlueDark/85 border-2 border-inkBlack shadow-brutal font-mono text-xs sm:text-sm font-bold">
+          <a href="https://linkedin.com/in/stuticoder1" target="_blank" rel="noopener noreferrer" class="hover:text-marigold transition-colors">LINKEDIN/IN/STUTICODER1 &nearr;</a>
+          <span>&bull;</span>
+          <a href="https://github.com/stuticoder123" target="_blank" rel="noopener noreferrer" class="hover:text-marigold transition-colors">GITHUB.COM/STUTICODER123 &nearr;</a>
+          <span>&bull;</span>
+          <a href="tel:+918302657109" class="hover:text-marigold transition-colors">+91-8302657109</a>
+        </div>
+
+        <p class="mt-8 font-mono text-xs text-white/75">
+          &copy; 2026 Stuti Gupta. Crafted with Royal Blue &amp; Cream.
+        </p>
+      </div>
+    </footer>
+  </main>
+
+  <!-- CASE STUDY MODAL -->
+  <div id="project-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6">
+    <div onclick="closeProjectModal()" class="fixed inset-0 bg-inkBlack/75 backdrop-blur-sm"></div>
+    <div class="relative z-10 w-full max-w-2xl rounded-3xl bg-cream border-[3px] border-inkBlack shadow-brutalLg p-6 sm:p-8 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-start justify-between gap-4 mb-5">
+        <div>
+          <span id="modal-tag" class="inline-block font-mono text-xs font-bold uppercase px-3 py-1 rounded-full bg-neonGreen border-2 border-inkBlack text-inkBlack">
+            PROJECT BREAKDOWN
+          </span>
+          <h3 id="modal-title" class="font-extrabold text-2xl sm:text-3xl text-inkBlack mt-3">
+            Project Title
+          </h3>
+        </div>
+        <button onclick="closeProjectModal()" aria-label="Close modal" class="brutal-btn p-2 rounded-xl bg-marigold text-inkBlack font-extrabold cursor-pointer">
+          ✕
+        </button>
+      </div>
+
+      <div class="space-y-5 text-sm sm:text-base text-inkBlack/85 font-medium">
+        <div class="p-4 rounded-2xl bg-creamLight border-2 border-inkBlack">
+          <h4 class="font-mono text-xs font-bold uppercase text-royalBlue mb-1">Overview</h4>
+          <p id="modal-problem" class="leading-relaxed text-inkBlack"></p>
+        </div>
+
+        <div>
+          <h4 class="font-mono text-xs font-bold uppercase text-inkBlack mb-2">Key Implementation Highlights</h4>
+          <ul id="modal-architecture" class="space-y-2 list-disc list-inside"></ul>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-acidLime border-2 border-inkBlack shadow-brutal">
+          <h4 class="font-mono text-xs font-bold uppercase text-inkBlack mb-1">Outcome</h4>
+          <p id="modal-impact" class="text-sm font-bold text-inkBlack"></p>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-between gap-4 pt-1">
+          <div id="modal-stack" class="flex flex-wrap gap-2 font-mono text-xs font-bold"></div>
+          <a href="https://github.com/stuticoder123" target="_blank" rel="noopener noreferrer" class="brutal-btn bg-marigold text-inkBlack font-mono text-xs font-bold px-4 py-2 rounded-full">
+            View GitHub &nearr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTERACTIVE CONTACT MODAL -->
+  <div id="contact-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6">
+    <div onclick="closeContactModal()" class="fixed inset-0 bg-inkBlack/75 backdrop-blur-sm"></div>
+    <div class="relative z-10 w-full max-w-lg rounded-3xl bg-cream border-[3px] border-inkBlack shadow-brutalLg p-6 sm:p-8">
+      <div class="flex items-start justify-between gap-4 mb-5">
+        <div>
+          <span class="inline-block font-mono text-xs font-bold uppercase px-3 py-1 rounded-full bg-marigold border-2 border-inkBlack text-inkBlack">
+            DIRECT MESSAGE
+          </span>
+          <h3 class="font-extrabold text-2xl text-inkBlack mt-2">Connect with Stuti</h3>
+        </div>
+        <button onclick="closeContactModal()" aria-label="Close contact modal" class="brutal-btn p-2 rounded-xl bg-creamLight text-inkBlack font-extrabold cursor-pointer">
+          ✕
+        </button>
+      </div>
+
+      <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+        <div>
+          <label class="block font-mono text-xs font-bold text-inkBlack mb-1.5">Your Name</label>
+          <input type="text" required placeholder="Aarav Mehta" class="w-full px-4 py-3 rounded-xl bg-white border-2 border-inkBlack focus:outline-none focus:ring-2 focus:ring-royalBlue text-sm font-medium text-inkBlack" />
+        </div>
+        <div>
+          <label class="block font-mono text-xs font-bold text-inkBlack mb-1.5">Email Address</label>
+          <input type="email" required placeholder="aarav@company.com" class="w-full px-4 py-3 rounded-xl bg-white border-2 border-inkBlack focus:outline-none focus:ring-2 focus:ring-royalBlue text-sm font-medium text-inkBlack" />
+        </div>
+        <div>
+          <label class="block font-mono text-xs font-bold text-inkBlack mb-1.5">Message</label>
+          <textarea rows="3" required placeholder="Hi Stuti, I'd love to discuss an engineering opportunity..." class="w-full px-4 py-3 rounded-xl bg-white border-2 border-inkBlack focus:outline-none focus:ring-2 focus:ring-royalBlue text-sm font-medium text-inkBlack resize-none"></textarea>
+        </div>
+        <div class="pt-2 flex items-center justify-end gap-3">
+          <button type="button" onclick="closeContactModal()" class="px-4 py-2.5 font-mono text-xs font-bold text-inkBlack hover:underline cursor-pointer">
+            Cancel
+          </button>
+          <button type="submit" class="brutal-btn bg-marigold hover:bg-marigoldHover text-inkBlack font-extrabold text-sm px-6 py-3 rounded-full cursor-pointer">
+            Send Message &rarr;
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- JavaScript Interactivity -->
+  <script>
+    // Project Details from StutiResume.pdf
+    const projectDetails = {
+      contest: {
+        tag: 'NEXT.JS • TAILWIND CSS • REST APIS',
+        title: 'Automated Contest Tracker',
+        problem: 'Competitive programmers frequently miss upcoming rounds due to fragmented schedules across multiple coding platforms.',
+        architecture: [
+          'Engineered a centralized coding contest dashboard that aggregates live schedule data from multiple competitive programming platforms via REST APIs.',
+          'Implemented automated contest tracking, multi-criteria filtering, and clean date/time sorting.',
+          'Designed responsive UI views using Next.js and Tailwind CSS to streamline contest discovery across mobile and desktop.'
+        ],
+        impact: 'Unified multi-platform contest discovery into a fast, zero-clutter developer dashboard.',
+        stack: ['Next.js', 'Tailwind CSS', 'JavaScript', 'REST APIs']
+      },
+      alumconnect: {
+        tag: 'FULL-STACK • REACT • TYPESCRIPT • MONGODB • SUPABASE',
+        title: 'AlumConnect',
+        problem: 'Students and alumni lack a structured, dedicated hub for verified mentorship and internship/opportunity sharing.',
+        architecture: [
+          'Built a full-stack alumni networking platform enabling structured mentorship, profile management, and opportunity sharing.',
+          'Designed modular RESTful backend services using Node.js and Express.js.',
+          'Integrated React/TypeScript frontend components with MongoDB data persistence and Supabase authentication workflows.'
+        ],
+        impact: 'Delivered an end-to-end mentorship and career networking platform bridging students and alumni.',
+        stack: ['React.js', 'TypeScript', 'Node.js', 'Express.js', 'MongoDB', 'Supabase']
+      },
+      rps: {
+        tag: 'PYTHON • OPENCV • COMPUTER VISION',
+        title: 'AI Rock Paper Scissor using OpenCV',
+        problem: 'Interactive webcam gesture recognition requires accurate contour isolation and low-latency game state updates.',
+        architecture: [
+          'Developed a real-time webcam gesture recognition application using Python and OpenCV.',
+          'Implemented frame preprocessing, region-of-interest (ROI) extraction, and hand contour detection to classify Rock-Paper-Scissors moves.',
+          'Built deterministic rule-based game state logic for smooth, low-latency interactive gameplay.'
+        ],
+        impact: 'Achieved responsive, real-time hand gesture classification on standard webcam input.',
+        stack: ['Python', 'OpenCV', 'Computer Vision']
+      }
+    };
+
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const iconOpen = document.getElementById('menu-icon-open');
+    const iconClose = document.getElementById('menu-icon-close');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.contains('hidden');
+      mobileMenu.classList.toggle('hidden', !isHidden);
+      iconOpen.classList.toggle('hidden', isHidden);
+      iconClose.classList.toggle('hidden', !isHidden);
+    });
+
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        iconOpen.classList.remove('hidden');
+        iconClose.classList.add('hidden');
+      });
+    });
+
+    // Continuous 3-Photo Auto-Rotating Polaroid Story Card
+    const polaroidSlides = document.querySelectorAll('.polaroid-slide');
+    const storyBars = document.querySelectorAll('.story-bar-inner');
+    const slideCounter = document.getElementById('slide-counter');
+    const polaroidCaption = document.getElementById('polaroid-caption');
+
+    const captions = [
+      '01 // Stuti Gupta • Kota, Rajasthan',
+      '02 // AI Agents & 500+ DSA Solved',
+      '03 // 24.8K+ LinkedIn & Open Source'
+    ];
+
+    let activeIndex = 0;
+    let autoTimer;
+    const INTERVAL_MS = 3000;
+
+    function updateCarousel(nextIdx) {
+      const total = polaroidSlides.length;
+      const prevIdx = activeIndex;
+      activeIndex = (nextIdx + total) % total;
+
+      polaroidSlides.forEach((slide, idx) => {
+        slide.classList.remove('active', 'prev');
+        if (idx === activeIndex) {
+          slide.classList.add('active');
+        } else if (idx === prevIdx) {
+          slide.classList.add('prev');
+        }
+      });
+
+      storyBars.forEach((bar, idx) => {
+        bar.classList.remove('story-bar-fill');
+        void bar.offsetWidth;
+        if (idx < activeIndex) {
+          bar.style.width = '100%';
+        } else if (idx === activeIndex) {
+          bar.style.width = '0%';
+          bar.classList.add('story-bar-fill');
+        } else {
+          bar.style.width = '0%';
+        }
+      });
+
+      if (slideCounter) slideCounter.textContent = activeIndex + 1;
+      if (polaroidCaption) polaroidCaption.textContent = captions[activeIndex];
+    }
+
+    function startAutoRotation() {
+      clearInterval(autoTimer);
+      autoTimer = setInterval(() => {
+        updateCarousel(activeIndex + 1);
+      }, INTERVAL_MS);
+    }
+
+    function stepCarousel(delta) {
+      updateCarousel(activeIndex + delta);
+      startAutoRotation();
+    }
+
+    // Allow Stuti to upload/drop 1-3 of her own photos directly into the live rotating frame
+    function handleUserPhotosUpload(event) {
+      const files = Array.from(event.target.files || []).slice(0, 3);
+      if (!files.length) return;
+
+      files.forEach((file, idx) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const imgEl = document.getElementById('polaroid-img-' + idx);
+          if (imgEl && e.target && e.target.result) {
+            imgEl.src = e.target.result;
+            imgEl.classList.add('object-top');
+          }
+        };
+        reader.readAsDataURL(file);
+      });
+
+      updateCarousel(0);
+      startAutoRotation();
+      showToast(`Loaded ${files.length} photo(s) into the live rotating reel!`);
+    }
+
+    updateCarousel(0);
+    startAutoRotation();
+
+    // Filter Projects
+    function filterProjects(category) {
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        if (btn.dataset.filter === category) {
+          btn.classList.remove('bg-creamLight');
+          btn.classList.add('bg-marigold');
+        } else {
+          btn.classList.remove('bg-marigold');
+          btn.classList.add('bg-creamLight');
+        }
+      });
+
+      document.querySelectorAll('.project-card').forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Case Study Modal Controls
+    const projectModal = document.getElementById('project-modal');
+    function openProjectModal(key) {
+      const data = projectDetails[key];
+      if (!data) return;
+
+      document.getElementById('modal-tag').textContent = data.tag;
+      document.getElementById('modal-title').textContent = data.title;
+      document.getElementById('modal-problem').textContent = data.problem;
+      document.getElementById('modal-impact').textContent = data.impact;
+
+      document.getElementById('modal-architecture').innerHTML =
+        data.architecture.map(item => `<li>${item}</li>`).join('');
+
+      document.getElementById('modal-stack').innerHTML =
+        data.stack.map(tech => `<span class="px-3 py-1 rounded-lg bg-white border-2 border-inkBlack text-inkBlack">${tech}</span>`).join('');
+
+      projectModal.classList.remove('hidden');
+      projectModal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeProjectModal() {
+      projectModal.classList.add('hidden');
+      projectModal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    // Contact Modal Controls
+    const contactModal = document.getElementById('contact-modal');
+    function openContactModal() {
+      contactModal.classList.remove('hidden');
+      contactModal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeContactModal() {
+      contactModal.classList.add('hidden');
+      contactModal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      closeContactModal();
+      e.target.reset();
+      showToast('Message sent! Stuti will get back to you soon.');
+    }
+
+    // Copy Email using execCommand for iframe compatibility
+    function copyEmail() {
+      const email = 'stuticoder123@gmail.com';
+      const temp = document.createElement('input');
+      temp.value = email;
+      document.body.appendChild(temp);
+      temp.select();
+      try {
+        document.execCommand('copy');
+        showToast('Copied stuticoder123@gmail.com!');
+      } catch (err) {
+        showToast('Email: stuticoder123@gmail.com');
+      }
+      document.body.removeChild(temp);
+    }
+
+    // Toast Helper
+    let toastTimer;
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-message').textContent = msg;
+      toast.classList.remove('opacity-0', 'translate-y-3');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-3');
+      }, 3000);
+    }
+
+    // Escape key closes modals
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeProjectModal();
+        closeContactModal();
+      }
+    });
+
+    // Scroll Reveal Observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
